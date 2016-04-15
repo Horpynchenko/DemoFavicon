@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="index.jsf" id="d1"
+                 smallIconSource='/resources/images/#{pageFlowScope.favicon == null ? "0" : pageFlowScope.favicon}/favicon.ico'>
+        <af:resource type="javascript" source="/resources/js/change-favicon.js"/>
+        <af:form id="f1">
+            <af:panelGroupLayout id="pgl_main" layout="horizontal" halign="center"
+                                 inlineStyle="padding: 10px;">                
+                
+                <af:serverListener type="RefreshPage" method="#{managedBean.refreshPage}"/>   
+                <af:clientAttribute name="servLisType" value="RefreshPage"/>
+                <af:clientAttribute name="resourcePath" value="/resources/images/"/>
+                <af:clientAttribute name="faviconName" value="/favicon.ico"/>
+
+                <af:button text="All" id="b1" actionListener="#{managedBean.refreshFaviconListener}">
+                    <af:clientAttribute name="faviconType" value="0"/>
+                    <af:clientAttribute name="servLisParId" value="pgl_main"/> 
+                </af:button>
+                <af:button text="▲" id="b2" actionListener='#{managedBean.refreshFaviconListener}'>
+                    <af:clientAttribute name="faviconType" value="1"/>
+                    <af:clientAttribute name="servLisParId" value="pgl_main"/> 
+                </af:button>
+                <af:button text="•" id="b3" actionListener='#{managedBean.refreshFaviconListener}'>
+                    <af:clientAttribute name="faviconType" value="2"/>
+                    <af:clientAttribute name="servLisParId" value="pgl_main"/> 
+                </af:button>
+                <af:button text="x" id="b4" actionListener='#{managedBean.refreshFaviconListener}'>
+                    <af:clientAttribute name="faviconType" value="3"/>
+                    <af:clientAttribute name="servLisParId" value="pgl_main"/> 
+                </af:button>
+                <af:button text="■" id="b5" actionListener='#{managedBean.refreshFaviconListener}'>
+                    <af:clientAttribute name="faviconType" value="4"/>
+                    <af:clientAttribute name="servLisParId" value="pgl_main"/> 
+                </af:button>
+                <af:outputText value="/resources/images/#{pageFlowScope.favicon == null ? '0' : pageFlowScope.favicon}/favicon.ico"
+                               id="ot5" partialTriggers="b1 b2 b3 b4 b5"/>
+                <f:facet name="separator">
+                    <af:spacer width="10" height="10" id="s2"/>
+                </f:facet>
+            </af:panelGroupLayout>
+        </af:form>
+    </af:document>
+</f:view>
